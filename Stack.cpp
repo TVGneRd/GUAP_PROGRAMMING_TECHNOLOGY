@@ -7,16 +7,16 @@ Stack* Stack::copy()
 {
 	Stack *newStack = new Stack;
 	newStack->head = new StackElement(*this->head);
-	StackElement *currnet = newStack->head;
+	StackElement *current = newStack->head;
 
-	while (currnet)
+	while (current)
 	{
-		StackElement *prev = currnet->getPrev();
+		StackElement *prev = current->getPrev();
 
 		if (prev) {
 			StackElement *tmp = new StackElement(*prev);
-			currnet->setPrev(tmp);
-			currnet = tmp;
+			current->setPrev(tmp);
+			current = tmp;
 		} else {
 			break;
 		}
@@ -38,11 +38,24 @@ void Stack::push(int number) {
 
 int Stack::pop() {
 	if (isEmpty()) return -1;
-	StackElement *tmp = this->head;
 
-	int value = this->head->getData();
-	this->head = this->head->getPrev();
-	delete tmp;
+	StackElement *last = this->head;
+	StackElement *prev = last;
+
+	while (last)
+	{ // переходим в конец очереди current будет предпоследним prev последним
+		if (last->getPrev()) {
+			prev = last;
+			last = last->getPrev();
+		} else {
+			break;
+		}
+	}
+
+	int value = last->getData();
+	prev->setPrev(nullptr);
+
+	delete last;
 
 	return value;
 }
@@ -53,15 +66,15 @@ StackElement* Stack::getHead() {
 
 
 void Stack::print() {
-	StackElement *currnet = this->head;
+	StackElement *current = this->head;
 
-	while (currnet)
+	while (current)
 	{
-		std::cout << currnet->getData();
+		std::cout << current->getData();
 
-		currnet = currnet->getPrev();
+		current = current->getPrev();
 
-		if (currnet) std::cout << " -> ";
+		if (current) std::cout << " -> ";
 	}
 
 	std::cout << std::endl;

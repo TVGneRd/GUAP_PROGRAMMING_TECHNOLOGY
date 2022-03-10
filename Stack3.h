@@ -1,6 +1,6 @@
 #include "Stack.h"
 
-class Stack3 : protected Stack
+class Stack3 : private Stack
 {
 public:
 	Stack3();

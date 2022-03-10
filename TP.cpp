@@ -90,14 +90,14 @@ void calculateLoop(StackLike stack) {
 
 template <typename StackLike>
 void pasteLoop(StackLike *stack) {
-	StackElement *currnet = buffer->getHead();
+	StackElement *current = buffer->getHead();
 
 	// доходим до предпоследнего элемента
-	while (currnet->getPrev()) {
-		currnet = currnet->getPrev();
+	while (current->getPrev()) {
+		current = current->getPrev();
 	}
 
-	currnet->setPrev(stack->getHead());
+	current->setPrev(stack->getHead());
 	stack->setHead(buffer->getHead());
 
 	buffer = nullptr;

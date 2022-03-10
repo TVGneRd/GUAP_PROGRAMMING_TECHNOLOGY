@@ -34,13 +34,13 @@ void Stack3::setHead(StackElement* element) {
 }
 
 int Stack3::getResultValue() {
-	StackElement *currnet = this->getHead();
+	StackElement *current = this->getHead();
 	int counter = 0;
 
-	while (currnet->getPrev())
+	while (current->getPrev())
 	{
-		counter = (currnet->getData() > currnet->getPrev()->getData()) ? counter + 1 : counter;
-		currnet = currnet->getPrev();
+		counter = (current->getData() > current->getPrev()->getData()) ? counter + 1 : counter;
+		current = current->getPrev();
 	}
 
 	return counter;

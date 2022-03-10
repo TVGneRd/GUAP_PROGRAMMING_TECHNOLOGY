@@ -11,6 +11,7 @@ public:
 	StackElement* getHead();
 	void setHead(StackElement* element);
 	Stack* copy();
+	int getResultValue();
 
 private:
 };

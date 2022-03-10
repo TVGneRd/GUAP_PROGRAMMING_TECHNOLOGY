@@ -11,6 +11,7 @@ public:
 	virtual StackElement* getHead();
 	virtual void setHead(StackElement* element);
 	virtual Stack* copy();
+	int getResultValue();
 
 private:
 	StackElement *head;

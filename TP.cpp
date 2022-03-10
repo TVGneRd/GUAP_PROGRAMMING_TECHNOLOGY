@@ -81,16 +81,7 @@ void calculateLoop(StackLike stack) {
 	}
 	else
 	{
-		StackElement *currnet = stack->getHead();
-		int counter = 0;
-
-		while (currnet->getPrev())
-		{
-			counter = (currnet->getData() > currnet->getPrev()->getData()) ? counter + 1 : counter;
-			currnet = currnet->getPrev();
-		}
-
-		cout << "Число элементов, значение которых превышает значение предыдущего элемента: " << counter << endl;
+		cout << "Число элементов, значение которых превышает значение предыдущего элемента: " << stack->getResultValue() << endl;
 
 	}
 

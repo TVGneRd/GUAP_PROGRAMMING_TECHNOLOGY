@@ -110,7 +110,7 @@ void copyLoop(StackLike *stack) {
 }
 
 template <typename StackLike>
-void applyCoomand(int command, StackLike stack) {
+void applyCommand(int command, StackLike stack) {
 	switch (command)
 	{
 	case 0:
@@ -224,15 +224,15 @@ int main()
 				{
 					case 0:
 						selectedStack<Stack1> = stack1;
-						applyCoomand(activeLine, selectedStack<Stack1>);
+						applyCommand(activeLine, selectedStack<Stack1>);
 						break;
 					case 1:
 						selectedStack<Stack2> = stack2;
-						applyCoomand(activeLine, selectedStack<Stack2>);
+						applyCommand(activeLine, selectedStack<Stack2>);
 						break;
 					case 2:
 						selectedStack<Stack3> = stack3;
-						applyCoomand(activeLine, selectedStack<Stack3>);
+						applyCommand(activeLine, selectedStack<Stack3>);
 						break;
 				}
 		}

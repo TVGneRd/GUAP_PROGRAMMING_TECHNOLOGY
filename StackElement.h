@@ -7,6 +7,10 @@ public:
 
 	~StackElement();
 	int getData();
+	void operator+=(int num);
+	void operator*=(int num);
+	void operator/=(int num);
+
 	StackElement* getPrev();
 	void setPrev(StackElement* prev);
 

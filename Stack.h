@@ -1,29 +1,35 @@
-#include "StackElement.h"
 #pragma once
+
+#include <iostream>
+#include <sstream>
+
+#include "StackElement.h"
+
+using namespace std;
 
 class Stack 
 {
 public:
 	Stack();
-	void push(int element);
-	int pop();
-	void print();
-	bool isEmpty();
-	StackElement* getHead();
+
+	void operator+=(int el);
+	Stack operator+(int el);
+
+	void operator-=(int el);
+	Stack operator-(int el);
+
+	void operator*=(int el);
+	Stack operator*(int el);
+
+	void operator/=(int el);
+	Stack operator/(int el);
+
+	string toString();
 	void setHead(StackElement* element);
-	Stack* copy();
+	StackElement* getHead();
+	void pop();
 
-	void operator+=(StackElement el); 
-	void operator+(StackElement el);
-
-	void operator-=(StackElement el);
-	void operator-(StackElement el);
-
-	void operator*=(StackElement el);
-	void operator*(StackElement el);
-
-	void operator/=(StackElement el);
-	void operator/(StackElement el);
+	bool isEmpty();
 
 private:
 	StackElement *head;

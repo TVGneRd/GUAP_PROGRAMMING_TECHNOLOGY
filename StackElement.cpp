@@ -19,6 +19,18 @@ int StackElement::getData() {
 	return data;
 }
 
+void StackElement::operator+=(int num) {
+	 this->data += num;
+}
+
+void StackElement::operator*=(int num) {
+	this->data *= num;
+}
+
+void StackElement::operator/=(int num) {
+	this->data /= num;
+}
+
 StackElement* StackElement::getPrev() {
 	return prev;
 }

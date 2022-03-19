@@ -1,4 +1,6 @@
-class StackElement{
+#pragma once
+
+class StackElement {
 public:
 	StackElement(int data, StackElement *prev);
 	StackElement(const StackElement &stackElement);

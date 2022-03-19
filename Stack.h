@@ -1,17 +1,29 @@
 #include "StackElement.h"
-#pragma once
+#pragma once
+
 class Stack 
 {
 public:
 	Stack();
-	virtual void push(int element);
-	virtual int pop();
-	virtual void print();
-	virtual bool isEmpty();
-	virtual StackElement* getHead();
-	virtual void setHead(StackElement* element);
-	virtual Stack* copy();
-	int getResultValue();
+	void push(int element);
+	int pop();
+	void print();
+	bool isEmpty();
+	StackElement* getHead();
+	void setHead(StackElement* element);
+	Stack* copy();
+
+	void operator+=(StackElement el); 
+	void operator+(StackElement el);
+
+	void operator-=(StackElement el);
+	void operator-(StackElement el);
+
+	void operator*=(StackElement el);
+	void operator*(StackElement el);
+
+	void operator/=(StackElement el);
+	void operator/(StackElement el);
 
 private:
 	StackElement *head;

@@ -71,9 +71,9 @@ void IntegerLoop() {
 
 	string commands[] = {
 		"Вычесть число (--int)",
-		"Вычесть еденицу (int--)",
+		"Вычесть единицу (int--)",
 		"Прибавть число (++int)",
-		"Прибавть еденицу (int++)",
+		"Прибавть единицу (int++)",
 		"Получить отрицательное значение (!)",
 		"\033[31mВернуться в меню\033[0m"
 	};
@@ -98,7 +98,7 @@ void IntegerLoop() {
 				++integer;
 				break;
 			case 3:
-				integer--;
+				integer++;
 				break;
 			case 4:
 				cout << !integer;

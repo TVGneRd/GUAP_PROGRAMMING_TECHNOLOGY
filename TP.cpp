@@ -2,8 +2,9 @@
 #include <string>
 #include <conio.h>
 
-#include "Stack.h"
-#include "Integer.h"
+#include "List.h"
+#include "BinInterface.h"
+#include "OctInterface.h"
 
 #define ARROW_UP 72
 #define ARROW_DOWN 80
@@ -13,14 +14,16 @@
 
 using namespace std;
 
-Stack* stack = new Stack();
 int lastSelectedMenuLine = 0;
 
-void backLoop() {
-	cout << endl << "Нажмите любую клавишу для выхода в меню" << endl;
-	_getch();
-}
+List *listes[3] = {new List(), new BinInterface(), new OctInterface()};
 
+//void backLoop() {
+//	cout << endl << "Нажмите любую клавишу для выхода в меню" << endl;
+//	_getch();
+//}
+//
+//
 
 int menu(string status, string* commands, size_t commandsLength) {
 
@@ -51,6 +54,16 @@ int menu(string status, string* commands, size_t commandsLength) {
 				activeLine = (activeLine == 0) ? commandsLength - 1 : activeLine - 1;
 				break;
 
+			case ARROW_LEFT:
+				system("@cls||clear");
+
+				return -1;
+
+			case ARROW_RIGTH:
+				system("@cls||clear");
+
+				return -2;
+
 			case ENTER:
 				lastSelectedMenuLine = activeLine;
 				system("@cls||clear");
@@ -60,172 +73,146 @@ int menu(string status, string* commands, size_t commandsLength) {
 	}
 }
 
-void IntegerLoop() {
-	int num;
-
-	cout << "Введите начальное число: ";
-	cin >> num;
+void applyCommand(int command, List *list) {
 	system("@cls||clear");
 
-	Integer integer(num);
-
-	string commands[] = {
-		"Вычесть число (--int)",
-		"Вычесть единицу (int--)",
-		"Прибавть число (++int)",
-		"Прибавть единицу (int++)",
-		"Получить отрицательное значение (!)",
-		"\033[31mВернуться в меню\033[0m"
-	};
-	
-	lastSelectedMenuLine = 0;
-
-	while (true)
+	switch (command)
 	{
-		string status = "Значение класса Integer: \033[31m" + to_string(integer.getData()) + "\033[0m";
 
-		int command = menu(status, commands, 6);
+	case 0:
+		int number;
+		cout << "Введите число: ";
+		cin >> number;
+		list->push(number);
+		break;
 
-		switch (command)
-		{
-			case 0:
-				--integer;
-				break;
-			case 1:
-				integer--;
-				break;
-			case 2:
-				++integer;
-				break;
-			case 3:
-				integer++;
-				break;
-			case 4:
-				cout << !integer;
-				backLoop();
-				break;
-			case 5:
-				return;
+	case 1: {
+		if (list->isEmpty()) {
+			cout << "Лист пустой!";
+			cin.get();
+
+			break;
 		}
-	}
-}
 
-void StackLoop() {
+		int listSize = list->getSize();
 
-	string commands[] = {
-		"Добавить элемент в очередь (+=)",
-		"Извлечь элемент из очереди (-=)",
-		"Прибавть число ко всем элементам очереди (+)",
-		"Отнять число от всех элементов очереди (-)",
-		"Умножить очередь на число (*)",
-		"Разделить очередь на число (/)",
-		"Продублировать очередь (*=)",
-		"Очистить очередь (/=)",
-		"\033[31mВернуться в меню\033[0m"
-	};
+		string slecetElementMessage = "Выберите элемент:";
 
-	lastSelectedMenuLine = 0;
+		string *commands = new string[listSize];
 
-	int num = 0;
-
-	while (true)
-	{
-		string status = "Значение класса Stack: \033[31m" + stack->toString() + "\033[0m";
-
-		int command = menu(status, commands, 9);
-
-		switch (command)
+		for (int i = 0; i < listSize; i++)
 		{
-		case 0:
-			cout << "Введите число: ";
-			cin >> num;
-
-			*stack += num;
-			break;
-
-		case 1:
-			*stack -= 1;
-			break;
-
-		case 2:
-			cout << "Введите число: ";
-			cin >> num;
-
-			*stack = *stack + num;
-			break;
-
-		case 3:
-			cout << "Введите число: ";
-			cin >> num;
-
-			*stack = *stack - num;
-			break;
-
-		case 4:
-			cout << "Введите число: ";
-			cin >> num;
-
-			*stack = *stack * num;
-			break;
-		case 5:
-			cout << "Введите число: ";
-			cin >> num;
-
-			*stack = *stack / num;
-			break;
-		case 6:
-			*stack *= 2;
-			break;
-		case 7:
-			*stack /= 1;
-			break;
-		case 8:
-			return;
+			commands[i] = list->getStringValue(list->get(i));
+			commands[i] += " (";
+			commands[i] += to_string(list->get(i));
+			commands[i] += ")";
 		}
+
+		int index = menu(slecetElementMessage, commands, listSize);
+
+		list->remove(index);
+
+		break;
 	}
-	
+
+	case 2: {
+		if (list->isEmpty()) {
+			cout << "Лист пустой!";
+			cin.get();
+
+			break;
+		}
+
+		int listSize = list->getSize();
+
+		string slecetElementMessage = "Выберите элемент:";
+
+		string *commands = new string[listSize];
+
+		for (int i = 0; i < listSize; i++)
+		{
+			commands[i] = list->getStringValue(list->get(i));
+			commands[i] += " (";
+			commands[i] += to_string(list->get(i));
+			commands[i] += ")";
+		}
+
+		int index = menu(slecetElementMessage, commands, listSize);
+
+		list->edit(index);
+
+		break;
+	}
+
+	case 3:
+		list->load();
+		break;
+
+	case 4:
+		list->save();
+		break;
+
+	case 5:
+		exit(0);
+	}
 }
 
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	int command = 0;
-	int activeTask = 0;
+	string commands[] = {
+		"Добавить элемент",
+		"Удалить элемент",
+		"Редактировать элемент",
+		"Загрузить",
+		"Сохранить",
+		"\033[31mВыход\033[0m",
+	};
 
-	while (true)
-	{
-		system("@cls||clear");
-		cout << "Выберите задание:" << endl << endl;
+	int listId = 0;
+	List *activeList = listes[0];
 
-		for (int i = 0; i < 2; i++)
+	for (;;) {
+		string status;
+		
+		switch (listId)
 		{
-			if (activeTask == i) cout << "\033[36m";
-			cout << "Задание " << (i+1) << "\033[0m" << endl;
+		case 0:
+			status += "Выбранный класс \033[36mList\033[0m\n";
+			break;
+		case 1:
+			status += "Выбранный класс \033[33mBinInterface\033[0m\n";
+			break;
+
+		case 2:
+			status += "Выбранный класс \033[35mOctInterface\033[0m\n";
+			break;
 		}
 
-		command = _getch();
-		if (command == 224) command = _getch();
+		status += activeList->toString();
+
+		int command = menu(status, commands, sizeof(commands) / sizeof(string));
 
 		switch (command)
 		{
 
-		case ARROW_DOWN:
-		case ARROW_UP:
-			activeTask = !activeTask;
-			break;
+			case -1:
+				listId = (listId == 0) ? 2 : listId - 1;
+				break;
 
-		case ENTER:
-			system("@cls||clear");
+			case -2:
+				listId = (listId >= 2) ? 0 : listId + 1;
+				break;
 
-			if (activeTask) {
-				StackLoop();
-			} else {
-				IntegerLoop();
-			}
+			default:
+				applyCommand(command, activeList);
+
 		}
+
+		activeList = listes[listId];
+
 	}
 
-	
 }
 

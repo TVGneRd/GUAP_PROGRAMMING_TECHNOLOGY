@@ -35,3 +35,9 @@
 Клавиши «ВВЕРХ», «ВНИЗ» - передвижение по пунктам меню. 
 Клавиши «ВЛЕВО», «ВПРАВО» - выбор активной очереди. 
 Клавиша «ENTER - выбор пункта меню 
+
+![image](https://user-images.githubusercontent.com/43295090/167474918-d748215d-750a-45ac-bf77-72b28284caf8.png)
+![image](https://user-images.githubusercontent.com/43295090/167474956-9ab96f07-9cde-4ea8-b2bd-e83469e4b6a4.png)
+![image](https://user-images.githubusercontent.com/43295090/167474971-c6ffaac7-c54c-4f80-8009-da79a44bb5a2.png)
+![image](https://user-images.githubusercontent.com/43295090/167474978-cd951e8b-71d7-4c44-8d2e-39a8175d8fd7.png)
+![image](https://user-images.githubusercontent.com/43295090/167474991-d8da0012-977e-4131-83b9-f255ef4801da.png)

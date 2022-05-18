@@ -3,7 +3,7 @@
 #include "BinInterface.h"
 
 
-string BinInterface::getStringValue(int data) // Взято из интернета
+string BinInterface::getStringValue(int data) 
 {
 	// Warning: this breaks for numbers with more than 64 bits
 	char buffer[64];

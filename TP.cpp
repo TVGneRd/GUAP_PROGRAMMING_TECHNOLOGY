@@ -18,13 +18,6 @@ int lastSelectedMenuLine = 0;
 
 List *listes[3] = {new List(), new BinInterface(), new OctInterface()};
 
-//void backLoop() {
-//	cout << endl << "Нажмите любую клавишу для выхода в меню" << endl;
-//	_getch();
-//}
-//
-//
-
 int menu(string status, string* commands, size_t commandsLength) {
 
 	int activeLine = lastSelectedMenuLine;

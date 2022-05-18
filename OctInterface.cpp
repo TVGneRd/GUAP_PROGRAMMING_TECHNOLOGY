@@ -2,7 +2,7 @@
 #include <bitset>
 #include "OctInterface.h"
 
-string OctInterface::getStringValue(int data) // Взято из интернета
+string OctInterface::getStringValue(int data) 
 {
 	string s;
 	while (data > 0)

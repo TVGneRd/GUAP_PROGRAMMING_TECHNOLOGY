@@ -151,15 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="OctInterface.cpp" />
-    <ClCompile Include="List.cpp" />
-    <ClCompile Include="BinInterface.cpp" />
     <ClCompile Include="TP.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinInterface.h" />
-    <ClInclude Include="OctInterface.h" />
-    <ClInclude Include="List.h" />
+    <ClInclude Include="Sort.h" />
+    <ClInclude Include="utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
